@@ -1,0 +1,7 @@
+{
+    "python-envs.pythonProjects": [],
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+
+    // Aquí forzamos a VS Code a usar tu entorno virtual como intérprete
+    "python.defaultInterpreterPath": "C:\\Users\\Santiago\\Downloads\\Proyecto Juego Batalla Naval\\venv\\Scripts\\python.exe"
+}
