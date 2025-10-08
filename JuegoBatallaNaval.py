@@ -409,75 +409,78 @@ def jugar_j1_vs_maquina(tablero_j1=None, tablero_m=None, ships_j1=None, ships_m=
     print("\n=== FIN DEL JUEGO ===")
 
     
-#Modo debug: función para mostrar todo el tablero (barcos y disparos)
-def imprimir_tableros_completos(tablero1, tablero2, nombre1="J1", nombre2="J2/Máquina"):
-    ancho_tablero = columnas * 7 + 6  # 7 por celda + 6 por separadores verticales
-    print(f"{nombre1:^{ancho_tablero}}      {nombre2:^{ancho_tablero}}\n")
+# #Modo debug: función para mostrar todo el tablero (barcos y disparos)
+# def imprimir_tableros_completos(tablero1, tablero2, nombre1="J1", nombre2="J2/Máquina"):
+#     ancho_tablero = columnas * 7 + 6  # 7 por celda + 6 por separadores verticales
+#     print(f"{nombre1:^{ancho_tablero}}      {nombre2:^{ancho_tablero}}\n")
 
-    # Separador superior
-    for _ in range(columnas + 1):
-        print("+-----", end="")
-    print("+      ", end="")
-    for _ in range(columnas + 1):
-        print("+-----", end="")
-    print("+")
+#     # Separador superior
+#     for _ in range(columnas + 1):
+#         print("+-----", end="")
+#     print("+      ", end="")
+#     for _ in range(columnas + 1):
+#         print("+-----", end="")
+#     print("+")
 
-    # Números de columnas
-    print("|     ", end="")
-    for x in range(columnas):
-        print(f"|  {x+1}  ", end="")
-    print("|      ", end="")
-    print("|     ", end="")
-    for x in range(columnas):
-        print(f"|  {x+1}  ", end="")
-    print("|")
+#     # Números de columnas
+#     print("|     ", end="")
+#     for x in range(columnas):
+#         print(f"|  {x+1}  ", end="")
+#     print("|      ", end="")
+#     print("|     ", end="")
+#     for x in range(columnas):
+#         print(f"|  {x+1}  ", end="")
+#     print("|")
 
-    # Separador horizontal
-    for _ in range(columnas + 1):
-        print("+-----", end="")
-    print("+      ", end="")
-    for _ in range(columnas + 1):
-        print("+-----", end="")
-    print("+")
+#     # Separador horizontal
+#     for _ in range(columnas + 1):
+#         print("+-----", end="")
+#     print("+      ", end="")
+#     for _ in range(columnas + 1):
+#         print("+-----", end="")
+#     print("+")
 
-    # Filas
-    for y in range(filas):
-        # Tablero 1
-        print(f"|  {chr(ord('A') + y)}  ", end="")
-        for x in range(columnas):
-            celda = tablero1[y][x]
-            mostrar = "." if celda == mar else celda
-            print(f"|  {mostrar}  ", end="")
-        print("|      ", end="")
+#     # Filas
+#     for y in range(filas):
+#         # Tablero 1
+#         print(f"|  {chr(ord('A') + y)}  ", end="")
+#         for x in range(columnas):
+#             celda = tablero1[y][x]
+#             mostrar = "." if celda == mar else celda
+#             print(f"|  {mostrar}  ", end="")
+#         print("|      ", end="")
 
-        # Tablero 2
-        print(f"|  {chr(ord('A') + y)}  ", end="")
-        for x in range(columnas):
-            celda = tablero2[y][x]
-            mostrar = "." if celda == mar else celda
-            print(f"|  {mostrar}  ", end="")
-        print("|")
+#         # Tablero 2
+#         print(f"|  {chr(ord('A') + y)}  ", end="")
+#         for x in range(columnas):
+#             celda = tablero2[y][x]
+#             mostrar = "." if celda == mar else celda
+#             print(f"|  {mostrar}  ", end="")
+#         print("|")
 
-        # Separador horizontal de fila
-        for _ in range(columnas + 1):
-            print("+-----", end="")
-        print("+      ", end="")
-        for _ in range(columnas + 1):
-            print("+-----", end="")
-        print("+")
+#         # Separador horizontal de fila
+#         for _ in range(columnas + 1):
+#             print("+-----", end="")
+#         print("+      ", end="")
+#         for _ in range(columnas + 1):
+#             print("+-----", end="")
+#         print("+")
 
 
 # ===================== BLOQUE PRINCIPAL (DEBUG + MENÚ) =====================
 
-# Generar una vez los tableros de debug y sus ships y mostrarlos.
-print("\n[DEBUG] Tablero completo (barcos visibles):")
-ships_j1_debug = []
-ships_j2_debug = []
-tablero_j1 = colocar_todos_los_barcos(obtener_matriz_inicial(), ships_j1_debug)
-tablero_j2 = colocar_todos_los_barcos(obtener_matriz_inicial(), ships_j2_debug)
-imprimir_tableros_completos(tablero_j1, tablero_j2, "J1", "J2")
+# 🔧 BLOQUE DE DEBUG — COMÉNTALO CUANDO NO QUIERAS VER LOS TABLEROS DE PRUEBA 🔧
+# (Puedes descomentar estas líneas para probar manualmente los tableros iniciales)
 
-print("===== BIENVENIDO A BATALLA NAVAL =====")
+# print("\n[DEBUG] Tablero completo (barcos visibles):")
+# ships_j1_debug = []
+# ships_j2_debug = []
+# tablero_j1 = colocar_todos_los_barcos(obtener_matriz_inicial(), ships_j1_debug)
+# tablero_j2 = colocar_todos_los_barcos(obtener_matriz_inicial(), ships_j2_debug)
+# imprimir_tableros_completos(tablero_j1, tablero_j2, "J1", "J2/Máquina")
+
+# 🔧 FIN DEL BLOQUE DE DEBUG 🔧
+
 
 while True:
     print("\n===== MENÚ PRINCIPAL =====")
@@ -494,12 +497,28 @@ while True:
         modo = input("Elija una opción: ")
 
         if modo == "1":
-            # Reutiliza los tableros generados en debug (tablero_j1, tablero_j2) y sus ships
-            jugar_j1_vs_j2(tablero_j1=tablero_j1, tablero_j2=tablero_j2, ships_j1=ships_j1_debug, ships_j2=ships_j2_debug)
+            # ⚠️ Si no ejecutaste el bloque de debug, crea nuevos tableros aquí
+            try:
+                jugar_j1_vs_j2(tablero_j1=tablero_j1, tablero_j2=tablero_j2,
+                               ships_j1=ships_j1_debug, ships_j2=ships_j2_debug)
+            except NameError:
+                ships_j1_debug = []
+                ships_j2_debug = []
+                tablero_j1 = colocar_todos_los_barcos(obtener_matriz_inicial(), ships_j1_debug)
+                tablero_j2 = colocar_todos_los_barcos(obtener_matriz_inicial(), ships_j2_debug)
+                jugar_j1_vs_j2(tablero_j1, tablero_j2, ships_j1_debug, ships_j2_debug)
 
         elif modo == "2":
-            # Para máquina reutilizamos tablero_j2 como tablero de la máquina
-            jugar_j1_vs_maquina(tablero_j1=tablero_j1, tablero_m=tablero_j2, ships_j1=ships_j1_debug, ships_m=ships_j2_debug)
+            # ⚠️ Igual, si no hay tableros generados, los crea automáticamente
+            try:
+                jugar_j1_vs_maquina(tablero_j1=tablero_j1, tablero_m=tablero_j2,
+                                    ships_j1=ships_j1_debug, ships_m=ships_j2_debug)
+            except NameError:
+                ships_j1_debug = []
+                ships_j2_debug = []
+                tablero_j1 = colocar_todos_los_barcos(obtener_matriz_inicial(), ships_j1_debug)
+                tablero_j2 = colocar_todos_los_barcos(obtener_matriz_inicial(), ships_j2_debug)
+                jugar_j1_vs_maquina(tablero_j1, tablero_j2, ships_j1_debug, ships_j2_debug)
 
         else:
             print(" Opción inválida en el modo de juego.")
@@ -513,7 +532,7 @@ while True:
         print("5. Gana el jugador que hunda todos los barcos del rival.")
         print("6. Cada jugador tiene un número limitado de disparos.")
         print("7. ¡Diviértete y buena suerte!")
-        
+
     elif opcion == "3":
         print("\n👋 Gracias por jugar. ¡Hasta la próxima!")
         break
